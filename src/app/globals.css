@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,15 +7,113 @@
   --font-mono: var(--font-geist-mono);
 }
 
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --accent-primary: #6366f1;
+  --accent-secondary: #a855f7;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #020617;
+    --foreground: #f8fafc;
+    --accent-primary: #818cf8;
+    --accent-secondary: #c084fc;
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.5rem;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-mesh {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Custom Premium Prose styles for Markdown */
+.prose-premium h1 { @apply text-4xl font-extrabold mb-8 text-white mt-12; }
+.prose-premium h2 { @apply text-2xl font-bold mb-6 text-indigo-400 mt-16 pb-2 border-b border-white/5; }
+.prose-premium h3 { @apply text-xl font-bold mb-4 text-white mt-8; }
+.prose-premium p { @apply text-slate-400 leading-relaxed mb-6 text-lg; }
+.prose-premium ul { @apply list-disc list-inside space-y-3 mb-8 text-slate-400; }
+.prose-premium blockquote { @apply border-l-4 border-indigo-500 pl-6 my-8 italic text-slate-300 bg-white/5 p-6 rounded-r-2xl; }
+.prose-premium pre { @apply bg-black/40 p-6 rounded-2xl border border-white/10 my-8 overflow-x-auto font-mono text-sm leading-relaxed text-indigo-100; }
+.prose-premium code { @apply bg-indigo-500/10 text-indigo-400 px-1.5 py-0.5 rounded font-mono text-sm; }
+.prose-premium hr { @apply border-white/5 my-16; }
+.prose-premium a { @apply text-indigo-500 font-semibold hover:underline; }
+.prose-premium strong { @apply text-white font-bold; }
+
+@media (prefers-color-scheme: light) {
+  .prose-premium h1 { @apply text-slate-900; }
+  .prose-premium h2 { @apply text-indigo-600 border-slate-200; }
+  .prose-premium h3 { @apply text-slate-800; }
+  .prose-premium p { @apply text-slate-600; }
+  .prose-premium ul { @apply text-slate-600; }
+  .prose-premium blockquote { @apply bg-slate-100/50 text-slate-700; }
+  .prose-premium pre { @apply bg-slate-900; }
+  .prose-premium strong { @apply text-slate-900; }
+}
+
+@media (prefers-color-scheme: light) {
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.03) 25%,
+      rgba(0, 0, 0, 0.08) 50%,
+      rgba(0, 0, 0, 0.03) 75%
+    );
+    background-size: 200% 100%;
+  }
 }
