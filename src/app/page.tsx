@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 export default function Home() {
   return (
@@ -128,6 +129,23 @@ export default function Home() {
           
         </div>
       </main>
+
+      {/* Newsletter Section */}
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="max-w-4xl mx-auto glass-card p-12 md:p-20 border-white/5 bg-white/5 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-indigo-500 to-purple-600" />
+          
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="space-y-4 text-center md:text-left">
+              <h2 className="text-3xl font-extrabold tracking-tight dark:text-white">Get Latest Updates</h2>
+              <p className="text-slate-500 text-sm max-w-sm">Join the AICODEVIBES community for weekly architectural deep-dives and laboratory experiments.</p>
+            </div>
+            
+            <NewsletterForm />
+          </div>
+        </div>
+      </section>
 
       <footer className="py-20 border-t border-white/5 bg-white/5 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 h-full flex flex-col md:flex-row items-center justify-between gap-10">
