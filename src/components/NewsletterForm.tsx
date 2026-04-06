@@ -15,7 +15,7 @@ export function NewsletterForm() {
             name="email"
             required
             placeholder="your@email.com"
-            className="w-full px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition-all shadow-inner shadow-black/20"
+            className="w-full px-6 py-4 rounded-xl bg-slate-900/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition-all shadow-inner shadow-black/20"
           />
         </div>
         <button 
