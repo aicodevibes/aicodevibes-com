@@ -47,9 +47,12 @@ export default function LessonsHubPage() {
                 ))}
             </div>
 
-            <footer className="mt-32 pt-12 border-t border-white/5 text-center">
-                <a href="/" className="text-indigo-500 font-semibold hover:underline flex items-center justify-center gap-2">
+            <footer className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+                <a href="/" className="text-indigo-500 font-semibold hover:underline flex items-center gap-2">
                    ← Back to Application Home
+                </a>
+                <a href="https://github.com/aicodevibes/aicodevibes-com" target="_blank" className="text-slate-500 text-[10px] hover:text-indigo-400 transition-colors uppercase font-bold tracking-widest">
+                    Source Repository
                 </a>
             </footer>
         </div>

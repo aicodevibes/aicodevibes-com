@@ -75,7 +75,7 @@ Navigate to `src/app/ui-patterns-lesson/page.tsx` to experience these patterns i
 > **Understanding `reset()`**: The `reset()` function only tells Next.js to re-render the current segment in place. If the error is being caused by an external factor—like a **URL parameter** or **corrupt database state**—simply re-rendering will just trigger the same error again. For recovery, you must "Force System Recovery" by resetting the state (e.g., clearing the URL params).
 
 > [!IMPORTANT]
-> **Professor's Note on Next.js 15**: In the latest version of Next.js, `params` and `searchParams` are now **Promises**. You must `await` them in your Page component before accessing their properties. This was a critical fix we implemented in our lab to ensure the "Fail" parameter was correctly detected!
+> **Professor's Note on Next.js 15+**: In the latest version of Next.js, `params` and `searchParams` are now **Promises**. You must `await` them in your Page component before accessing their properties. This was a critical fix we implemented in our lab to ensure the "Fail" parameter was correctly detected!
 
 ---
 

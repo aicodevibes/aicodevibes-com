@@ -62,9 +62,12 @@ export default function DataLessonPage() {
                 <PostsList />
             </Suspense>
 
-            <footer className="mt-20">
+            <footer className="mt-20 flex justify-between items-center">
                 <a href="/" className="text-indigo-500 font-semibold hover:underline flex items-center gap-2">
                    ← Back to Home
+                </a>
+                <a href="https://github.com/aicodevibes/aicodevibes-com" target="_blank" className="text-slate-500 text-[10px] hover:text-indigo-400 transition-colors uppercase font-bold tracking-widest">
+                    Source Repository
                 </a>
             </footer>
         </div>

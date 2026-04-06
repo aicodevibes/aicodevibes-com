@@ -42,8 +42,8 @@ export default function Home() {
                     <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">Course Status: Active Lab Sessions</span>
                 </div>
                 <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight dark:text-white">
-                    Mastering <br />
-                    <span className="text-gradient">Next.js 15+</span>
+                    Learning Next.js Basics <br />
+                    <span className="text-gradient">for Agentic Coding</span>
                 </h1>
                 <p className="text-lg md:text-xl text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl">
                     An architectural deep-dive into the modern web ecosystem. Built using the very techniques it teaches: Streaming, Server Actions, and Dynamic Routing.
@@ -133,11 +133,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 h-full flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="space-y-4 text-center md:text-left">
              <div className="text-xl font-bold dark:text-white tracking-tighter">AI CODE VIBES</div>
-             <p className="text-[10px] text-slate-500 uppercase font-mono tracking-tighter">© 2026 AI Code Vibes Institute of Technology • Developed with Next.js 15</p>
+             <p className="text-[10px] text-slate-500 uppercase font-mono tracking-tighter">© 2026 AI Code Vibes Institute of Technology • Developed with Next.js 16</p>
           </div>
           <div className="flex gap-8 text-xs font-semibold text-slate-500 uppercase tracking-widest">
             <a href="https://nextjs.org/docs" target="_blank" className="hover:text-indigo-400 transition-colors">Vercel Documentation</a>
             <a href="https://github.com/vercel/next.js" target="_blank" className="hover:text-indigo-400 transition-colors">Vercel Source</a>
+            <a href="https://github.com/aicodevibes/aicodevibes-com" target="_blank" className="hover:text-indigo-400 transition-colors">Repository</a>
           </div>
         </div>
       </footer>

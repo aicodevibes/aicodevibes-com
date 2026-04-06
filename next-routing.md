@@ -71,7 +71,7 @@ export async function generateMetadata({ params }) {
    Yes. You can have `[category]/[id]/page.tsx` for complex structures like e-commerce or documentation hubs.
 
 6. **How do I get the `slug` into my component?**  
-   It is passed to the Page component as a **Promise** in the `params` prop. You must `await` it in Next.js 15.
+   It is passed to the Page component as a **Promise** in the `params` prop. You must `await` it in Next.js 15+.
 
 7. **Can I use this for a blog?**  
    This is precisely how modern static blogs (like those built with MDX) work. Each blog post is a file, and a single template renders them all.
