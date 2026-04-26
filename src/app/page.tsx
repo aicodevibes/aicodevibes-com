@@ -55,7 +55,7 @@ export default async function Home() {
 
             <GlassCard className="w-full lg:w-96 p-10 bg-white/5 backdrop-blur-3xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Site Goals & Core Tech</h3>
+                <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Site Goals & Core Tech</h2>
                 <div className="space-y-6">
                     <GoalItem title="Production Foundations" desc="Skip the boilerplate and build for scale." />
                     <GoalItem title="Performance First" desc="Zero-runtime CSS and Server-side streaming." />
@@ -122,7 +122,7 @@ export default async function Home() {
       <section className="relative py-24 px-6 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
         <GlassCard className="max-w-4xl mx-auto p-12 md:p-20 bg-white/5 backdrop-blur-3xl relative overflow-hidden group">
-          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-indigo-500 to-purple-600" />
+          <div className="absolute top-0 left-0 w-1 h-full bg-linear-to-b from-indigo-500 to-purple-600" />
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="space-y-4 text-center md:text-left">

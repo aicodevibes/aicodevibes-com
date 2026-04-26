@@ -46,7 +46,7 @@ async function PostsList() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl">
       {posts.map((post: Post) => (
         <GlassCard key={post.id} hoverable className="p-8">
-          <h3 className="font-bold text-xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 capitalize">
+          <h3 className="font-bold text-xl mb-4 text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-600 capitalize">
             {post.title}
           </h3>
           <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
@@ -63,8 +63,8 @@ function PostsSkeleton() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl">
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="h-48 rounded-[2rem] bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 animate-pulse relative overflow-hidden">
-           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
+        <div key={i} className="h-48 rounded-4xl bg-slate-100 dark:bg-white/3 border border-slate-200 dark:border-white/5 animate-pulse relative overflow-hidden">
+           <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
         </div>
       ))}
     </div>

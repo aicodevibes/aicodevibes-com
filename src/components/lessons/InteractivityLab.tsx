@@ -25,7 +25,7 @@ export function InteractivityLab() {
       {/* Interaction Card 1: State */}
       <GlassCard className="p-12 text-center">
         <h3 className="text-2xl font-bold mb-6 dark:text-white">The Power of State</h3>
-        <div className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 mb-8">
+        <div className="text-7xl font-black text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-500 mb-8">
           {likes}
         </div>
         <Button 
@@ -45,7 +45,7 @@ export function InteractivityLab() {
       <GlassCard className="p-12">
         <h3 className="text-2xl font-bold mb-8 dark:text-white">Asynchronous Feedback</h3>
         {!isSubmitted ? (
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form action="#" onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Your Message</label>
               <textarea 
@@ -53,7 +53,7 @@ export function InteractivityLab() {
                 onChange={(e) => setFeedback(e.target.value)}
                 placeholder="What did you learn today?"
                 disabled={isSending}
-                className="w-full h-40 p-6 rounded-[2rem] bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/5 outline-none transition-all dark:text-white resize-none disabled:opacity-50"
+                className="w-full h-40 p-6 rounded-4xl bg-slate-100 dark:bg-white/3 border border-slate-200 dark:border-white/10 focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/5 outline-none transition-all dark:text-white resize-none disabled:opacity-50"
               />
             </div>
             <Button 

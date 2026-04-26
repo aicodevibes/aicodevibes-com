@@ -11,9 +11,9 @@ export function Footer() {
            </p>
         </div>
         <div className="flex gap-8 text-xs font-semibold text-slate-500 uppercase tracking-widest">
-           <a href="https://nextjs.org/docs" target="_blank" className="hover:text-indigo-400 transition-colors">Vercel Documentation</a>
-           <a href="https://github.com/vercel/next.js" target="_blank" className="hover:text-indigo-400 transition-colors">Vercel Source</a>
-           <a href="https://github.com/aicodevibes/aicodevibes-com" target="_blank" className="hover:text-indigo-400 transition-colors">Repository</a>
+           <a href="https://nextjs.org/docs" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">Vercel Documentation</a>
+           <a href="https://github.com/vercel/next.js" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">Vercel Source</a>
+           <a href="https://github.com/aicodevibes/aicodevibes-com" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">Repository</a>
         </div>
       </div>
     </footer>

@@ -10,17 +10,20 @@ export function NewsletterForm() {
 
   return (
     <div className="w-full md:w-96 space-y-4">
-      <form action={formAction} className="flex flex-col gap-3">
+      <form action="/#newsletter" className="flex flex-col gap-3">
         <Input 
           type="email" 
           name="email"
+          id="newsletter-email"
           required
           placeholder="your@email.com"
           disabled={isPending}
+          aria-label="Email address for newsletter"
         />
         <Button 
           type="submit"
           isLoading={isPending}
+          formAction={formAction}
         >
           Subscribe Now
         </Button>

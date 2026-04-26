@@ -26,13 +26,14 @@ export default function ActionsLessonPage() {
             </header>
 
             <div className="glass-card p-10 border-white/10 shadow-2xl shadow-orange-500/5">
-                <h3 className="text-2xl font-bold mb-6 dark:text-white">The Zero-API Experience</h3>
+                <h2 className="text-2xl font-bold mb-6 dark:text-white">The Zero-API Experience</h2>
                 
                 {/* Notice the use of the 'formAction' from useActionState here. */}
-                <form action={formAction} className="space-y-6">
+                <form action="/actions-lesson#form" className="space-y-6">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-400 ml-1">Task Description</label>
+                        <label htmlFor="task-title" className="text-sm font-medium text-slate-400 ml-1">Task Description</label>
                         <input 
+                            id="task-title"
                             name="title"
                             type="text" 
                             placeholder="Type something to 'save' to the server..."
@@ -45,6 +46,7 @@ export default function ActionsLessonPage() {
                     <button 
                         type="submit"
                         disabled={isPending}
+                        formAction={formAction}
                         className="w-full py-4 rounded-xl bg-orange-600 text-white font-bold hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/20 disabled:grayscale disabled:cursor-not-allowed"
                     >
                         {isPending ? (
@@ -76,7 +78,7 @@ export default function ActionsLessonPage() {
             </div>
 
             <div className="mt-12 p-6 rounded-2xl bg-orange-500/5 border border-orange-500/10">
-                <h4 className="text-sm font-bold text-orange-500 uppercase mb-4 tracking-widest tracking-widest">Verification Checklist</h4>
+                <h3 className="text-sm font-bold text-orange-500 uppercase mb-4 tracking-widest">Verification Checklist</h3>
                 <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
                     <li className="flex gap-2 items-start text-indigo-400 font-bold">1. Check your Terminal/Server Console. </li>
                     <li className="flex gap-2">2. Check your Browser DevTools Network tab.</li>
