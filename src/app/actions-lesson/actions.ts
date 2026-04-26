@@ -2,7 +2,12 @@
 
 import { revalidatePath } from "next/cache";
 
-export async function createTask(prevState: any, formData: FormData) {
+export type ActionState = {
+  error?: string;
+  success?: string;
+} | null;
+
+export async function createTask(prevState: ActionState, formData: FormData) {
   const title = formData.get("title");
   
   if (!title || typeof title !== "string" || title.length < 3) {

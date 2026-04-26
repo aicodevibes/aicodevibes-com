@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { createTask } from "./actions";
+import Link from "next/link";
 
 export default function ActionsLessonPage() {
   // useActionState handles the form submission, returns the state, and the dispatch function.
@@ -79,14 +80,14 @@ export default function ActionsLessonPage() {
                 <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
                     <li className="flex gap-2 items-start text-indigo-400 font-bold">1. Check your Terminal/Server Console. </li>
                     <li className="flex gap-2">2. Check your Browser DevTools Network tab.</li>
-                    <li className="flex gap-2">3. Observe the "Success" message returned from the server!</li>
+                    <li className="flex gap-2">3. Observe the &quot;Success&quot; message returned from the server!</li>
                 </ul>
             </div>
 
             <footer className="mt-20 flex justify-between items-center">
-                <a href="/" className="text-indigo-500 font-semibold hover:underline flex items-center gap-2">
+                <Link href="/" className="text-indigo-500 font-semibold hover:underline flex items-center gap-2">
                    ← Back to Home
-                </a>
+                </Link>
                 <a href="https://github.com/aicodevibes/aicodevibes-com" target="_blank" className="text-slate-500 text-[10px] hover:text-indigo-400 transition-colors uppercase font-bold tracking-widest">
                     Source Repository
                 </a>

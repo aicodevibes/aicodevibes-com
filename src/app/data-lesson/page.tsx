@@ -24,9 +24,15 @@ async function getPosts() {
   }
 }
 
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
+
 // The Component that handles data fetching
 async function PostsList() {
-  const posts = await getPosts();
+  const posts = await getPosts() as Post[];
   
   if (posts.length === 0) {
     return (
@@ -38,7 +44,7 @@ async function PostsList() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl">
-      {posts.map((post: any) => (
+      {posts.map((post: Post) => (
         <GlassCard key={post.id} hoverable className="p-8">
           <h3 className="font-bold text-xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 capitalize">
             {post.title}

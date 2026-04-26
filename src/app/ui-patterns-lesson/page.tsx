@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 
 // A mock data fetcher that can "fail" or "take long"
 async function getCriticalData(shouldFail: boolean) {
@@ -41,7 +42,7 @@ export default async function UIPatternsPage({ searchParams }: { searchParams: P
                     Advanced <span className="text-gradient">UI Patterns</span>
                 </h1>
                 <p className="text-slate-500 dark:text-slate-400 italic">
-                    Learn to build "Unbreakable" interfaces using File-System based error and loading states.
+                    Learn to build &quot;Unbreakable&quot; interfaces using File-System based error and loading states.
                 </p>
             </header>
 
@@ -62,26 +63,26 @@ export default async function UIPatternsPage({ searchParams }: { searchParams: P
                         In a real app, errors and slow loads are inevitable. Click below to see how our Next.js architecture gracefully handles them.
                     </p>
                     <div className="flex flex-col sm:row gap-4">
-                        <a 
+                        <Link 
                             href="/ui-patterns-lesson?fail=true"
                             className="px-6 py-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-500 font-bold hover:bg-rose-500/20 text-center transition-all"
                         >
-                            Trigger a "Critical Error"
-                        </a>
-                        <a 
+                            Trigger a &quot;Critical Error&quot;
+                        </Link>
+                        <Link 
                             href="/ui-patterns-lesson"
                             className="px-6 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 font-bold hover:bg-emerald-500/20 text-center transition-all"
                         >
-                            Reset to "Success"
-                        </a>
+                            Reset to &quot;Success&quot;
+                        </Link>
                     </div>
                 </section>
             </div>
 
             <footer className="mt-20">
-                <a href="/" className="text-indigo-500 font-semibold hover:underline flex items-center gap-2">
+                <Link href="/" className="text-indigo-500 font-semibold hover:underline flex items-center gap-2">
                    ← Back to Home
-                </a>
+                </Link>
             </footer>
         </div>
     </div>

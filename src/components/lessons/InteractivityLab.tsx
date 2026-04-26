@@ -70,7 +70,7 @@ export function InteractivityLab() {
             <div className="text-6xl mb-6">🚀</div>
             <h4 className="text-2xl font-bold dark:text-white mb-4">Feedback Received!</h4>
             <div className="p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/10 mb-8">
-               <p className="text-slate-600 dark:text-slate-300 italic">"{feedback}"</p>
+               <p className="text-slate-600 dark:text-slate-300 italic">&quot;{feedback}&quot;</p>
             </div>
             <Button 
               variant="ghost"

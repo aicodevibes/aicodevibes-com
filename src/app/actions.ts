@@ -7,7 +7,13 @@ const EmailSchema = z.object({
   email: z.string().email('Invalid email address'),
 });
 
-export async function subscribeEmail(prevState: any, formData: FormData) {
+export type ActionState = {
+  error?: string;
+  success?: boolean;
+  message?: string;
+} | null;
+
+export async function subscribeEmail(prevState: ActionState, formData: FormData) {
   const email = formData.get('email');
 
   // Validate the email format

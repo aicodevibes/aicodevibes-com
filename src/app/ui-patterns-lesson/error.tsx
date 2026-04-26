@@ -20,7 +20,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
                     Something went <span className="text-rose-500">wrong</span>.
                 </h1>
                 <p className="text-slate-500 dark:text-slate-400 font-medium">
-                    "Error Boundaries are the seatbelts of your application architecture."
+                    &quot;Error Boundaries are the seatbelts of your application architecture.&quot;
                 </p>
             </header>
 
@@ -54,7 +54,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
             </div>
             
             <footer className="pt-12 text-xs text-slate-400 italic">
-                Note: This entire UI resides in 'error.tsx'. 
+                Note: This entire UI resides in &apos;error.tsx&apos;. 
                 The root layout remains untouched, protecting the rest of your app.
             </footer>
         </div>
