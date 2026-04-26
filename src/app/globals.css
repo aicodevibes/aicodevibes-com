@@ -8,23 +8,12 @@
 }
 
 :root {
-  --background: #fdfdff;
-  --foreground: #0f172a;
-  --accent-primary: #6366f1;
-  --accent-secondary: #a855f7;
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(99, 102, 241, 0.12);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #020617;
-    --foreground: #f8fafc;
-    --accent-primary: #818cf8;
-    --accent-secondary: #c084fc;
-    --glass-bg: rgba(15, 23, 42, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.1);
-  }
+  --background: #050508;
+  --foreground: #f8fafc;
+  --accent-primary: #818cf8;
+  --accent-secondary: #c084fc;
+  --glass-bg: rgba(10, 10, 15, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 body {
@@ -93,38 +82,35 @@ body {
   animation: shimmer 2s infinite linear;
 }
 
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s ease-out forwards;
+}
+
 /* Custom Premium Prose styles for Markdown */
-.prose-premium h1 { @apply text-4xl font-extrabold mb-8 text-white mt-12; }
-.prose-premium h2 { @apply text-2xl font-bold mb-6 text-indigo-400 mt-16 pb-2 border-b border-white/5; }
-.prose-premium h3 { @apply text-xl font-bold mb-4 text-white mt-8; }
-.prose-premium p { @apply text-slate-400 leading-relaxed mb-6 text-lg; }
-.prose-premium ul { @apply list-disc list-inside space-y-3 mb-8 text-slate-400; }
-.prose-premium blockquote { @apply border-l-4 border-indigo-500 pl-6 my-8 italic text-slate-300 bg-white/5 p-6 rounded-r-2xl; }
-.prose-premium pre { @apply bg-black/40 p-6 rounded-2xl border border-white/10 my-8 overflow-x-auto font-mono text-sm leading-relaxed text-indigo-100; }
-.prose-premium code { @apply bg-indigo-500/10 text-indigo-400 px-1.5 py-0.5 rounded font-mono text-sm; }
-.prose-premium hr { @apply border-white/5 my-16; }
-.prose-premium a { @apply text-indigo-500 font-semibold hover:underline; }
-.prose-premium strong { @apply text-white font-bold; }
-
-@media (prefers-color-scheme: light) {
-  .prose-premium h1 { @apply text-slate-900; }
-  .prose-premium h2 { @apply text-indigo-600 border-slate-200; }
-  .prose-premium h3 { @apply text-slate-800; }
-  .prose-premium p { @apply text-slate-600; }
-  .prose-premium ul { @apply text-slate-600; }
-  .prose-premium blockquote { @apply bg-slate-100/50 text-slate-700; }
-  .prose-premium pre { @apply bg-slate-900; }
-  .prose-premium strong { @apply text-slate-900; }
-}
-
-@media (prefers-color-scheme: light) {
-  .animate-shimmer {
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.03) 25%,
-      rgba(0, 0, 0, 0.08) 50%,
-      rgba(0, 0, 0, 0.03) 75%
-    );
-    background-size: 200% 100%;
-  }
-}
+.prose-premium h1 { @apply text-4xl md:text-5xl font-black mb-8 dark:text-white mt-12 tracking-tight; }
+.prose-premium h2 { @apply text-2xl md:text-3xl font-black mb-6 text-indigo-500 mt-16 pb-4 border-b border-slate-200 dark:border-white/5 tracking-tight; }
+.prose-premium h3 { @apply text-xl md:text-2xl font-bold mb-4 dark:text-white mt-10 tracking-tight; }
+.prose-premium p { @apply text-slate-600 dark:text-slate-400 leading-relaxed mb-6 text-lg; }
+.prose-premium ul { @apply list-disc list-inside space-y-4 mb-8 text-slate-600 dark:text-slate-400 text-lg; }
+.prose-premium li::marker { @apply text-indigo-500 font-bold; }
+.prose-premium blockquote { @apply border-l-4 border-indigo-500 pl-8 my-10 italic text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-white/5 p-8 rounded-r-3xl text-xl; }
+.prose-premium pre { @apply bg-slate-900 p-8 rounded-3xl border border-white/10 my-10 overflow-x-auto font-mono text-sm leading-relaxed text-indigo-100 shadow-2xl shadow-indigo-500/10; }
+.prose-premium code { @apply bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 px-1.5 py-0.5 rounded font-mono text-sm font-semibold; }
+.prose-premium hr { @apply border-slate-200 dark:border-white/5 my-20; }
+.prose-premium a { @apply text-indigo-600 dark:text-indigo-400 font-bold underline decoration-indigo-500/30 underline-offset-4 hover:decoration-indigo-500 transition-all; }
+.prose-premium strong { @apply text-slate-900 dark:text-white font-black; }
+.prose-premium img { @apply rounded-3xl shadow-2xl border border-white/10 my-12; }

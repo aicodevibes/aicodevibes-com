@@ -1,29 +1,52 @@
 import { Suspense } from "react";
-import Image from "next/image";
+import { LaboratoryLayout } from "@/components/layout/LaboratoryLayout";
+import { GlassCard } from "@/components/ui/GlassCard";
+
+export const metadata = {
+  title: "Data Streaming Lab | Agentic Coding",
+  description: "Live demonstration of Next.js 16 data streaming with React Suspense.",
+};
 
 // A mock server-side data fetching function
 async function getPosts() {
-  // Simulate a network delay
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=4");
-  if (!res.ok) throw new Error("Failed to fetch data");
-  return res.json();
+  try {
+    // Simulate a network delay
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=4", {
+      next: { revalidate: 3600 }
+    });
+    if (!res.ok) throw new Error("Failed to fetch data");
+    return res.json();
+  } catch (error) {
+    console.error("Data fetch error:", error);
+    return [];
+  }
 }
 
 // The Component that handles data fetching
 async function PostsList() {
   const posts = await getPosts();
   
+  if (posts.length === 0) {
+    return (
+      <div className="text-center p-12 bg-red-500/10 border border-red-500/20 rounded-3xl">
+        <p className="text-red-500 font-bold">Failed to load demo data. Please try again later.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl">
       {posts.map((post: any) => (
-        <div key={post.id} className="glass-card p-6 border-indigo-500/10 hover:border-indigo-500/40 transition-all">
-          <h3 className="font-bold text-lg mb-2 text-gradient capitalize">{post.title}</h3>
+        <GlassCard key={post.id} hoverable className="p-8">
+          <h3 className="font-bold text-xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 capitalize">
+            {post.title}
+          </h3>
           <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
             {post.body}
           </p>
-        </div>
+        </GlassCard>
       ))}
     </div>
   );
@@ -32,9 +55,11 @@ async function PostsList() {
 // A Loading skeleton component
 function PostsSkeleton() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl">
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="h-40 rounded-3xl bg-slate-200/50 dark:bg-slate-800/50 border border-white/5 animate-shimmer" />
+        <div key={i} className="h-48 rounded-[2rem] bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 animate-pulse relative overflow-hidden">
+           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
+        </div>
       ))}
     </div>
   );
@@ -42,35 +67,15 @@ function PostsSkeleton() {
 
 export default function DataLessonPage() {
   return (
-    <div className="min-h-screen bg-mesh font-sans p-8 md:p-24 selection:bg-indigo-500/30">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
-            <header className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8">
-                    <span className="w-2 h-2 rounded-full bg-purple-500" />
-                    <span className="text-xs font-semibold text-purple-500 uppercase tracking-wider">Lesson 2: Async Architecture</span>
-                </div>
-                <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight dark:text-white">
-                    Streaming Data with <span className="text-gradient">Suspense</span>
-                </h1>
-                <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
-                    In this lab, we demonstrate how Next.js handles server-side data fetching and how it streams content to the client using React Suspense.
-                </p>
-            </header>
-
-            {/* Suspense is the key here. It shows the fallback while PostsList is fetching data. */}
-            <Suspense fallback={<PostsSkeleton />}>
-                <PostsList />
-            </Suspense>
-
-            <footer className="mt-20 flex justify-between items-center">
-                <a href="/" className="text-indigo-500 font-semibold hover:underline flex items-center gap-2">
-                   ← Back to Home
-                </a>
-                <a href="https://github.com/aicodevibes/aicodevibes-com" target="_blank" className="text-slate-500 text-[10px] hover:text-indigo-400 transition-colors uppercase font-bold tracking-widest">
-                    Source Repository
-                </a>
-            </footer>
-        </div>
-    </div>
+    <LaboratoryLayout
+      title="Streaming Data with Suspense"
+      description="In this lab, we demonstrate how Next.js handles server-side data fetching and how it streams content to the client using React Suspense."
+      moduleTag="Lesson 2: Async Architecture"
+      moduleColor="purple"
+    >
+      <Suspense fallback={<PostsSkeleton />}>
+        <PostsList />
+      </Suspense>
+    </LaboratoryLayout>
   );
 }
