@@ -1,12 +1,24 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
+/**
+ * Props for the GlassCard component
+ */
 interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** The content to be rendered inside the card */
   children: React.ReactNode;
+  /** Additional CSS classes for custom styling */
   className?: string;
+  /** Whether the card should have hover effects */
   hoverable?: boolean;
 }
 
+/**
+ * A modern, translucent card component with glassmorphism effects.
+ * 
+ * @param props - The properties for the glass card component
+ * @returns A styled div element acting as a glass card
+ */
 export function GlassCard({ children, className, hoverable = false, ...props }: GlassCardProps) {
   return (
     <div 

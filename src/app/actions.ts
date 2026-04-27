@@ -7,12 +7,26 @@ const EmailSchema = z.object({
   email: z.string().email('Invalid email address'),
 });
 
+/**
+ * The state returned by the subscribeEmail action
+ */
 export type ActionState = {
+  /** Error message if the action failed */
   error?: string;
+  /** Whether the action was successful */
   success?: boolean;
+  /** Success message if the action succeeded */
   message?: string;
 } | null;
 
+/**
+ * Server action to handle newsletter subscriptions.
+ * Validates the email and saves it to the database.
+ * 
+ * @param prevState - The previous state of the action
+ * @param formData - The form data containing the email address
+ * @returns An object containing the success status and message or error
+ */
 export async function subscribeEmail(prevState: ActionState, formData: FormData) {
   const email = formData.get('email');
 

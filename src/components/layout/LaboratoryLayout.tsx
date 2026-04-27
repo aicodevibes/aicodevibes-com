@@ -4,14 +4,29 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import React from "react";
 
+/**
+ * Props for the LaboratoryLayout component
+ */
 interface LaboratoryLayoutProps {
+  /** The main content of the laboratory */
   children: React.ReactNode;
+  /** The title of the laboratory page */
   title: string;
+  /** A detailed description of the experiment */
   description: string;
+  /** The module category tag */
   moduleTag: string;
+  /** Theme color for the module decorations */
   moduleColor?: 'indigo' | 'purple' | 'emerald' | 'rose' | 'amber';
 }
 
+/**
+ * A specialized layout for laboratory experiment pages.
+ * Includes a centered header with module-specific branding and navigation footer.
+ * 
+ * @param props - The properties for the laboratory layout component
+ * @returns A structured laboratory page with header, content, and footer
+ */
 export function LaboratoryLayout({ 
   children, 
   title, 
@@ -39,7 +54,7 @@ export function LaboratoryLayout({
     <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
       
-      <main className="flex-grow pt-32 pb-24 px-8 md:px-24">
+      <main className="grow pt-32 pb-24 px-8 md:px-24">
         <div className="max-w-7xl mx-auto">
           <header className="text-center mb-20">
             <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border mb-8 animate-fade-in ${borderColors[moduleColor]}`}>

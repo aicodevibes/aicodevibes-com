@@ -5,6 +5,12 @@ import { subscribeEmail } from "../app/actions";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
+/**
+ * A client-side form component for newsletter subscriptions.
+ * Uses React 19 useActionState for form handling and state management.
+ * 
+ * @returns A newsletter subscription form with success/error feedback
+ */
 export function NewsletterForm() {
   const [state, formAction, isPending] = useActionState(subscribeEmail, null);
 

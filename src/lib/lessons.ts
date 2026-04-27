@@ -3,6 +3,9 @@ import path from "path";
 
 const LESSONS_DIR = path.join(process.cwd(), "src/content/lessons");
 
+/**
+ * Metadata for a lesson
+ */
 export interface LessonMetadata {
   title: string;
   description: string;
@@ -11,6 +14,9 @@ export interface LessonMetadata {
   order: number;
 }
 
+/**
+ * Represents a complete lesson
+ */
 export interface Lesson {
   slug: string;
   metadata: LessonMetadata;
@@ -26,6 +32,12 @@ const METADATA_MAP: Record<string, Partial<LessonMetadata>> = {
   "next-ui-patterns": { icon: "🎨", difficulty: "Advanced", order: 6, description: "Advanced patterns for premium AI user interfaces." },
 };
 
+/**
+ * Generates metadata for a lesson based on its slug
+ * 
+ * @param slug - The lesson slug
+ * @returns The metadata object for the lesson
+ */
 function getMetadata(slug: string): LessonMetadata {
   const base = METADATA_MAP[slug] || {};
   const title = slug
@@ -44,6 +56,12 @@ function getMetadata(slug: string): LessonMetadata {
   };
 }
 
+/**
+ * Fetches a lesson by its slug
+ * 
+ * @param slug - The lesson slug (e.g., "next-routing")
+ * @returns The lesson object or null if not found
+ */
 export async function getLessonBySlug(slug: string): Promise<Lesson | null> {
   const filePath = path.join(LESSONS_DIR, `${slug}.md`);
 
@@ -64,6 +82,11 @@ export async function getLessonBySlug(slug: string): Promise<Lesson | null> {
   }
 }
 
+/**
+ * Retrieves all available lessons, sorted by their order
+ * 
+ * @returns An array of Lesson objects
+ */
 export async function getAllLessons(): Promise<Lesson[]> {
   try {
     if (!fs.existsSync(LESSONS_DIR)) return [];

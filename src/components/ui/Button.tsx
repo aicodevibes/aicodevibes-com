@@ -1,13 +1,26 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
+/**
+ * Props for the Button component
+ */
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** The visual style of the button */
   variant?: 'primary' | 'secondary' | 'ghost' | 'outline' | 'danger';
+  /** The size of the button */
   size?: 'sm' | 'md' | 'lg';
+  /** Whether the button is in a loading state */
   isLoading?: boolean;
+  /** Whether to render the button as its child element */
   asChild?: boolean;
 }
 
+/**
+ * A highly customizable, premium button component with support for multiple variants and sizes.
+ * 
+ * @param props - The properties for the button component
+ * @returns A styled button element or the child element if asChild is true
+ */
 export function Button({ 
   children, 
   className, 

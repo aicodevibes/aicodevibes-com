@@ -14,6 +14,12 @@ async function DbInitializer() {
   return null;
 }
 
+/**
+ * The main landing page of the application.
+ * Displays the course hero, module grid, and newsletter subscription form.
+ * 
+ * @returns The rendered home page
+ */
 export default async function Home() {
   return (
     <div className="min-h-screen relative overflow-hidden bg-mesh font-sans selection:bg-indigo-500/30">

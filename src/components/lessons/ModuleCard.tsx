@@ -2,15 +2,32 @@ import Link from "next/link";
 import { GlassCard } from "@/components/ui/GlassCard";
 import React from "react";
 
+/**
+ * Props for the ModuleCard component
+ */
 interface ModuleCardProps {
+  /** The title of the lesson module */
   title: string;
+  /** A brief description of the module content */
   desc: string;
+  /** Emoji or icon string for the module */
   icon: string;
+  /** URL to the detailed lesson page */
   href: string;
+  /** Category tag for the module */
   tag: string;
+  /** Optional URL to the laboratory experiment page */
   labHref?: string;
 }
 
+
+
+/**
+ * A card component representing a lesson module with navigation links.
+ * 
+ * @param props - The properties for the module card component
+ * @returns A styled card displaying module info and navigation options
+ */
 export function ModuleCard({ title, desc, icon, href, tag, labHref }: ModuleCardProps) {
   return (
     <GlassCard hoverable className="flex flex-col justify-between h-full">

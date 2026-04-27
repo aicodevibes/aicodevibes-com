@@ -1,5 +1,11 @@
 import React from "react";
 
+/**
+ * Footer component displayed at the bottom of every page.
+ * Contains site information and external documentation links.
+ * 
+ * @returns The styled site footer
+ */
 export function Footer() {
   return (
     <footer className="py-20 border-t border-white/5 bg-white/5 backdrop-blur-sm mt-auto">

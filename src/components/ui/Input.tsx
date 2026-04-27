@@ -1,11 +1,22 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
+/**
+ * Props for the Input component
+ */
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  /** The label text displayed above the input */
   label?: string;
+  /** Error message to display below the input */
   error?: string;
 }
 
+/**
+ * A styled input component with optional label and error messaging.
+ * 
+ * @param props - The properties for the input component
+ * @returns A styled input container with label and error message
+ */
 export function Input({ className, label, error, id, name, ...props }: InputProps) {
   const inputId = id || name;
   return (

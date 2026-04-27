@@ -1,6 +1,12 @@
 import Link from "next/link";
 import React from "react";
 
+/**
+ * Main navigation component for the application.
+ * Fixed at the top of the viewport with blur effects.
+ * 
+ * @returns The navigation bar with logo and links
+ */
 export function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-white/5 backdrop-blur-md">

@@ -4,6 +4,11 @@ import { useState } from "react";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Button } from "@/components/ui/Button";
 
+/**
+ * A client-side component demonstrating React state and form interactivity.
+ * 
+ * @returns A layout containing interactive experiment cards
+ */
 export function InteractivityLab() {
   const [likes, setLikes] = useState(0);
   const [feedback, setFeedback] = useState("");

@@ -8,6 +8,13 @@ export const metadata = {
   description: "Explore our comprehensive curriculum on Agentic Coding, Next.js 16, and modern AI development patterns.",
 };
 
+
+
+/**
+ * The lessons hub page that displays all available modules.
+ * 
+ * @returns The rendered lessons hub page
+ */
 export default async function LessonsHubPage() {
   const lessons = await getAllLessons();
 

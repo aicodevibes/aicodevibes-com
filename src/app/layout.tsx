@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   description: "1.0 - Advanced Web Application Design using Next JS curriculum, taught by James Losinger.",
 };
 
+/**
+ * Root layout component that wraps the entire application.
+ * Provides global font variables, metadata, and common HTML structure.
+ * 
+ * @param props - The properties for the layout component
+ * @returns The root HTML and body structure
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

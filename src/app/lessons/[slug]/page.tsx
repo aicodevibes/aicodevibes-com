@@ -7,6 +7,11 @@ import { Button } from "@/components/ui/Button";
 import { GlassCard } from "@/components/ui/GlassCard";
 import Link from "next/link";
 
+/**
+ * Generates static parameters for all lesson slugs to enable static site generation.
+ * 
+ * @returns Array of slug objects
+ */
 export async function generateStaticParams() {
   const lessons = await getAllLessons();
   return lessons.map((lesson) => ({
@@ -14,10 +19,16 @@ export async function generateStaticParams() {
   }));
 }
 
+/**
+ * Generates metadata for a specific lesson page.
+ * 
+ * @param props - Object containing the page parameters
+ * @returns Metadata object for the lesson page
+ */
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const lesson = await getLessonBySlug(slug);
-  
+
   if (!lesson) return { title: "Lesson Not Found" };
 
   return {
@@ -26,6 +37,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+/**
+ * The dynamic lesson viewer page that renders lesson content from markdown.
+ * 
+ * @param props - Object containing the page parameters
+ * @returns The rendered lesson viewer page or 404 if not found
+ */
 export default async function LessonViewerPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const lesson = await getLessonBySlug(slug);
@@ -37,8 +54,8 @@ export default async function LessonViewerPage({ params }: { params: Promise<{ s
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
-      
-      <main className="flex-grow pt-32 pb-24 px-6 md:px-12">
+
+      <main className="grow pt-32 pb-24 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 animate-fade-in">
             <Button variant="ghost" size="sm" asChild className="mb-8">
@@ -46,7 +63,7 @@ export default async function LessonViewerPage({ params }: { params: Promise<{ s
                 <span className="mr-2">←</span> Back to Curriculum
               </Link>
             </Button>
-            
+
             <div className="flex items-center gap-4 mb-6">
               <span className="text-4xl">{lesson.metadata.icon || "📖"}</span>
               <div>
@@ -77,11 +94,11 @@ export default async function LessonViewerPage({ params }: { params: Promise<{ s
               </p>
             </div>
             <Button variant="secondary" className="relative z-10 shrink-0" asChild>
-               <Link href={slug === "next-fetch" ? "/data-lesson" : 
-                           slug === "next-interactivity" ? "/interactivity-lesson" : 
-                           "/lessons"}>
-                 Go to Lab →
-               </Link>
+              <Link href={slug === "next-fetch" ? "/data-lesson" :
+                slug === "next-interactivity" ? "/interactivity-lesson" :
+                  "/lessons"}>
+                Go to Lab →
+              </Link>
             </Button>
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl group-hover:scale-110 transition-transform duration-700" />
           </div>
