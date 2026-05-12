@@ -2,21 +2,50 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 /**
- * Props for the Button component
+ * Props for the Button component.
+ * Extends standard HTML button attributes to ensure compatibility with all native button features.
  */
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /** The visual style of the button */
+  /** 
+   * The visual style of the button.
+   * - `primary`: Standard solid background for main actions.
+   * - `secondary`: Gradient background for highlighted/premium actions.
+   * - `ghost`: Transparent background for subtle or secondary actions.
+   * - `outline`: Bordered background for less prominent actions.
+   * - `danger`: Red-toned background for destructive or high-risk actions.
+   */
   variant?: 'primary' | 'secondary' | 'ghost' | 'outline' | 'danger';
-  /** The size of the button */
+  /** 
+   * The size of the button, controlling padding and font size.
+   * - `sm`: Small padding for compact UIs.
+   * - `md`: Standard padding for most use cases.
+   * - `lg`: Large padding for prominent hero sections.
+   */
   size?: 'sm' | 'md' | 'lg';
-  /** Whether the button is in a loading state */
+  /** 
+   * Whether the button is in a loading state. 
+   * When true, shows a spinner and disables interaction.
+   */
   isLoading?: boolean;
-  /** Whether to render the button as its child element */
+  /** 
+   * Whether to render the button as its child element while keeping the button styles.
+   * Useful for using `next/link` inside a button without nested interactive elements.
+   * This implements a basic version of the "Slot" pattern.
+   */
   asChild?: boolean;
 }
 
 /**
  * A highly customizable, premium button component with support for multiple variants and sizes.
+ * Designed to be the primary interactive element across the application, supporting 
+ * consistent branding and accessible interaction patterns.
+ * 
+ * @example
+ * ```tsx
+ * <Button variant="primary" onClick={() => console.log('clicked')}>
+ *   Click Me
+ * </Button>
+ * ```
  * 
  * @param props - The properties for the button component
  * @returns A styled button element or the child element if asChild is true

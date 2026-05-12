@@ -2,9 +2,10 @@ import React from "react";
 
 /**
  * Footer component displayed at the bottom of every page.
- * Contains site information and external documentation links.
+ * Provides copyright information, framework version acknowledgement, 
+ * and links to relevant Vercel and project source repositories.
  * 
- * @returns The styled site footer
+ * @returns The styled site footer with secondary navigation and branding.
  */
 export function Footer() {
   return (

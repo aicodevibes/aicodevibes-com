@@ -2,20 +2,28 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 /**
- * Merges tailwind classes with clsx and tailwind-merge
+ * A utility for conditionally merging Tailwind CSS classes.
+ * Combines `clsx` for conditional logic and `tailwind-merge` to handle 
+ * CSS specificity and conflict resolution.
  * 
- * @param inputs - Classes to merge
- * @returns Merged class string
+ * @param inputs - A variadic list of class names, objects, or arrays to merge.
+ * @returns A single string of merged class names.
  */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 /**
- * Formats a date to a readable string
+ * Formats a given date or date string into a human-readable format.
+ * Utilizes the native `Intl.DateTimeFormat` API for localized formatting.
  * 
- * @param date - The date to format
- * @returns A formatted date string (e.g., "January 1, 2024")
+ * @example
+ * ```ts
+ * formatDate("2024-01-01") // returns "January 1, 2024"
+ * ```
+ * 
+ * @param date - The date object or ISO string to format.
+ * @returns A string representing the formatted date (e.g., "January 1, 2024").
  */
 export function formatDate(date: Date | string) {
   return new Intl.DateTimeFormat("en-US", {

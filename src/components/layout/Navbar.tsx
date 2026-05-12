@@ -3,9 +3,10 @@ import React from "react";
 
 /**
  * Main navigation component for the application.
- * Fixed at the top of the viewport with blur effects.
+ * Features a fixed position at the top of the viewport with a blurred background
+ * effect for premium aesthetics and clear brand visibility.
  * 
- * @returns The navigation bar with logo and links
+ * @returns The navigation bar with site logo, internal curriculum links, and external documentation references.
  */
 export function Navbar() {
   return (

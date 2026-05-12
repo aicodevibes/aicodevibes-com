@@ -1,10 +1,11 @@
 import { sql } from '@vercel/postgres';
 
 /**
- * Initializes the database tables if they don't exist.
- * This can be called in the layout or a dedicated initialization route.
+ * Initializes the database schema if required tables do not already exist.
+ * This is designed to be called during the application's initialization phase
+ * (e.g., in a root layout or startup script) to ensure the environment is ready.
  * 
- * @returns An object indicating success or the error encountered
+ * @returns A promise that resolves to an object containing a success flag and an optional error.
  */
 export async function initDb() {
   // If we're in a local build environment without a DB, skip initialization

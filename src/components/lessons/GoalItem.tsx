@@ -1,20 +1,24 @@
 import React from "react";
 
 /**
- * Props for the GoalItem component
+ * Props for the GoalItem component.
  */
 interface GoalItemProps {
-  /** The title of the goal or feature */
+  /** The high-level title of the goal or technical feature */
   title: string;
-  /** Detailed description of the goal */
+  /** 
+   * A concise description of the goal, explaining its significance 
+   * within the project's architecture.
+   */
   desc: string;
 }
 
 /**
- * A simple list item component used to display site goals or tech features.
+ * A specialized list item component used to display high-level site goals 
+ * or core technical features in a consistent, bulleted format.
  * 
  * @param props - The properties for the goal item component
- * @returns A styled div representing a single goal
+ * @returns A styled container with an indicator dot, title, and description
  */
 export function GoalItem({ title, desc }: GoalItemProps) {
   return (

@@ -5,27 +5,33 @@ import Link from "next/link";
 import React from "react";
 
 /**
- * Props for the LaboratoryLayout component
+ * Props for the LaboratoryLayout component.
+ * Used to define the header content and branding for interactive experiment pages.
  */
 interface LaboratoryLayoutProps {
-  /** The main content of the laboratory */
+  /** The main content or interactive experiment to be rendered in the laboratory */
   children: React.ReactNode;
-  /** The title of the laboratory page */
+  /** The primary title of the laboratory page, prominently displayed in the header */
   title: string;
-  /** A detailed description of the experiment */
+  /** A detailed description explaining the purpose or goals of the experiment */
   description: string;
-  /** The module category tag */
+  /** A small badge text identifying the module category (e.g., 'Server', 'Client') */
   moduleTag: string;
-  /** Theme color for the module decorations */
+  /** 
+   * Theme color for the module badges and pulse indicators.
+   * Defaults to 'indigo'.
+   */
   moduleColor?: 'indigo' | 'purple' | 'emerald' | 'rose' | 'amber';
 }
 
 /**
- * A specialized layout for laboratory experiment pages.
- * Includes a centered header with module-specific branding and navigation footer.
+ * A specialized layout component for laboratory and interactive experiment pages.
+ * It provides a consistent header with module-specific branding, a centered 
+ * content area for the experiment, and a specialized footer with navigation 
+ * back to the curriculum.
  * 
  * @param props - The properties for the laboratory layout component
- * @returns A structured laboratory page with header, content, and footer
+ * @returns A structured laboratory page with specialized header, content, and footer
  */
 export function LaboratoryLayout({ 
   children, 

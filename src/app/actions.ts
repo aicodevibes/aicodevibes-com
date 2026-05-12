@@ -8,24 +8,34 @@ const EmailSchema = z.object({
 });
 
 /**
- * The state returned by the subscribeEmail action
+ * The standard response object returned by Server Actions.
+ * Provides a structured way to communicate success or failure to the client.
  */
 export type ActionState = {
-  /** Error message if the action failed */
+  /** 
+   * A human-readable error message explaining why the action failed.
+   * Typically displayed in an error toast or below form fields.
+   */
   error?: string;
-  /** Whether the action was successful */
+  /** 
+   * A flag indicating if the operation was completed successfully.
+   */
   success?: boolean;
-  /** Success message if the action succeeded */
+  /** 
+   * A human-readable success message.
+   * Typically displayed in a success toast or confirmation banner.
+   */
   message?: string;
 } | null;
 
 /**
- * Server action to handle newsletter subscriptions.
- * Validates the email and saves it to the database.
+ * A Server Action that handles newsletter registration requests.
+ * It validates the user's email address using Zod and interacts with the 
+ * PostgreSQL database to store the subscriber.
  * 
- * @param prevState - The previous state of the action
- * @param formData - The form data containing the email address
- * @returns An object containing the success status and message or error
+ * @param prevState - The state of the form before this action was invoked.
+ * @param formData - The submitted form data containing the 'email' field.
+ * @returns A promise resolving to an `ActionState` object with the result of the operation.
  */
 export async function subscribeEmail(prevState: ActionState, formData: FormData) {
   const email = formData.get('email');

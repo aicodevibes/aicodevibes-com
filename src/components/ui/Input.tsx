@@ -2,17 +2,34 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 /**
- * Props for the Input component
+ * Props for the Input component.
+ * Extends standard HTML input attributes for full compatibility.
  */
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  /** The label text displayed above the input */
+  /** 
+   * The label text displayed above the input field. 
+   * Provides accessibility and visual context.
+   */
   label?: string;
-  /** Error message to display below the input */
+  /** 
+   * Error message to display below the input. 
+   * When provided, the input border changes to a danger state.
+   */
   error?: string;
 }
 
 /**
- * A styled input component with optional label and error messaging.
+ * A styled, accessible input component with support for labels and validation states.
+ * Features a subtle inner shadow and premium focus effects.
+ * 
+ * @example
+ * ```tsx
+ * <Input 
+ *   label="Email Address" 
+ *   error={errors.email} 
+ *   placeholder="user@example.com" 
+ * />
+ * ```
  * 
  * @param props - The properties for the input component
  * @returns A styled input container with label and error message
