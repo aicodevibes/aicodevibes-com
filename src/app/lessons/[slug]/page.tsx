@@ -82,7 +82,19 @@ export default async function LessonViewerPage({ params }: { params: Promise<{ s
 
           <GlassCard className="p-8 md:p-16 shadow-xl shadow-indigo-500/5 backdrop-blur-sm overflow-hidden">
             <div className="prose-premium">
-              <ReactMarkdown>{lesson.content}</ReactMarkdown>
+              <ReactMarkdown
+                components={{
+                  a: ({ href, children, ...props }) => {
+                    const isInternal = href && href.startsWith("/");
+                    if (isInternal && href) {
+                      return <Link href={href} {...props}>{children}</Link>;
+                    }
+                    return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
+                  }
+                }}
+              >
+                {lesson.content}
+              </ReactMarkdown>
             </div>
           </GlassCard>
 

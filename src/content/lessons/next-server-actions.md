@@ -34,8 +34,11 @@ async function saveProject(formData: FormData) {
 }
 ```
 
-## 4. Progressive Enhancement
-A major pedagogical benefit of Server Actions is that they work **even if JavaScript is disabled in the browser**. Because they utilize the native HTML `<form action="...">` prop, the browser knows how to send the data directly to the server even before the React code has finished loading. This is the gold standard for **Resilient Web Design**.
+## 4. Progressive Enhancement & React 19 Form Standards
+A major pedagogical benefit of Server Actions is that they work **even if JavaScript is disabled in the browser**. Because we bind the Server Action dispatcher directly to the form element using the React 19 `action={formAction}` property, the browser knows how to submit a native HTTP POST request. This is the gold standard for **Resilient Web Design**.
+
+> [!IMPORTANT]
+> **Form Binding Rules**: You should always bind the server dispatcher directly to the form tag (`<form action={formAction}>`) rather than attaching a `formAction={formAction}` attribute on the submit button. Attaching it to the button breaks standard form submission behavior (such as hitting `Enter` inside an input field, which will fall back to a browser GET request and bypass the Server Action).
 
 ## 5. Lab Exercise: The Actions-Lesson Route
 Navigate to `src/app/actions-lesson/page.tsx` to experience a zero-boilerplate mutation. 
@@ -45,7 +48,7 @@ Navigate to `src/app/actions-lesson/page.tsx` to experience a zero-boilerplate m
 2.  **`createTask` Action**: An `async` function that extracts data via `formData` and returns a **State Object** (e.g., `{ success: "..." }` or `{ error: "..." }`).
 3.  **`useActionState` Hook**: A powerful React hook that bridges the Server/Client gap. It provides:
     - **`state`**: The result returned by the server.
-    - **`formAction`**: The function to pass to the `<form action="...">`.
+    - **`formAction`**: The function to pass to the `<form action={formAction}>` attribute.
     - **`isPending`**: A boolean state that is automatically true while the server is processing.
 
 ## 6. Verification: Where does the code run?
@@ -70,7 +73,7 @@ To truly understand the "Server" part of Server Actions, you must observe the **
    You can define them directly inside your components (if they are Server Components) or in a separate file (e.g., `actions.ts`) with `"use server"` at the top of the file.
 
 6. **What about "Loading" states?**  
-   Next.js provides a specialized hook, `useFormStatus`, which allows a child component of a form to know if its parent action is still "pending."
+   In React 19, `useActionState` returns `isPending` directly as its third return value. For deep child components inside a form, React 19 also provides the `useFormStatus` hook to check if the parent form is submitting.
 
 7. **How is this different from `trpc` or `GraphQL`?**  
    Server Actions are a native primitives. They provide similar type safety without the need for additional libraries or complex schema definitions.

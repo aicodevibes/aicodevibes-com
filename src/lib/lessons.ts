@@ -1,5 +1,6 @@
-import fs from "fs";
+import { promises as fs } from "fs";
 import path from "path";
+import { cache } from "react";
 
 const LESSONS_DIR = path.join(process.cwd(), "src/content/lessons");
 
@@ -78,15 +79,16 @@ function getMetadata(slug: string): LessonMetadata {
  * @param slug - The slug of the lesson to fetch.
  * @returns A promise resolving to the Lesson object, or null if the file doesn't exist.
  */
-export async function getLessonBySlug(slug: string): Promise<Lesson | null> {
-  const filePath = path.join(LESSONS_DIR, `${slug}.md`);
-
-  if (!slug.startsWith("next-") || !fs.existsSync(filePath)) {
+export const getLessonBySlug = cache(async (slug: string): Promise<Lesson | null> => {
+  'use cache';
+  if (!slug.startsWith("next-")) {
     return null;
   }
 
+  const filePath = path.join(LESSONS_DIR, `${slug}.md`);
+
   try {
-    const content = fs.readFileSync(filePath, "utf-8");
+    const content = await fs.readFile(filePath, "utf-8");
     return {
       slug,
       metadata: getMetadata(slug),
@@ -96,7 +98,7 @@ export async function getLessonBySlug(slug: string): Promise<Lesson | null> {
     console.error(`Error reading lesson ${slug}:`, error);
     return null;
   }
-}
+});
 
 /**
  * Scans the lessons directory and returns all valid lesson modules.
@@ -104,11 +106,10 @@ export async function getLessonBySlug(slug: string): Promise<Lesson | null> {
  * 
  * @returns A promise resolving to an array of Lesson objects.
  */
-export async function getAllLessons(): Promise<Lesson[]> {
+export const getAllLessons = cache(async (): Promise<Lesson[]> => {
+  'use cache';
   try {
-    if (!fs.existsSync(LESSONS_DIR)) return [];
-    
-    const files = fs.readdirSync(LESSONS_DIR);
+    const files = await fs.readdir(LESSONS_DIR);
     const lessons = await Promise.all(
       files
         .filter(f => f.startsWith("next-") && f.endsWith(".md"))
@@ -124,4 +125,4 @@ export async function getAllLessons(): Promise<Lesson[]> {
     console.error("Error reading lessons directory:", error);
     return [];
   }
-}
+});

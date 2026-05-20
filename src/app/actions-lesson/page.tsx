@@ -29,13 +29,14 @@ export default function ActionsLessonPage() {
                 <h2 className="text-2xl font-bold mb-6 dark:text-white">The Zero-API Experience</h2>
                 
                 {/* Notice the use of the 'formAction' from useActionState here. */}
-                <form action="/actions-lesson#form" className="space-y-6">
+                <form action={formAction} className="space-y-6">
                     <div className="space-y-2">
                         <label htmlFor="task-title" className="text-sm font-medium text-slate-400 ml-1">Task Description</label>
                         <input 
                             id="task-title"
                             name="title"
                             type="text" 
+                            autoComplete="off"
                             placeholder="Type something to 'save' to the server..."
                             required
                             disabled={isPending}
@@ -46,7 +47,6 @@ export default function ActionsLessonPage() {
                     <button 
                         type="submit"
                         disabled={isPending}
-                        formAction={formAction}
                         className="w-full py-4 rounded-xl bg-orange-600 text-white font-bold hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/20 disabled:grayscale disabled:cursor-not-allowed"
                     >
                         {isPending ? (

@@ -7,7 +7,7 @@
 ---
 
 ## 1. Objective
-In this session, we will move beyond "Hello World" and establish a robust, production-grade scaffold for a modern React application. We will focus on the **Next.js 15+ App Router architecture**, leveraging **TypeScript** for type safety, **Tailwind CSS** for atomic utility-first styling, and **Server Components** for optimal performance.
+In this session, we will move beyond "Hello World" and establish a robust, production-grade scaffold for a modern React application. We will focus on the **Next.js 16 App Router architecture**, leveraging **TypeScript** for type safety, **Tailwind CSS v4.0** for atomic utility-first styling, and **Server Components** for optimal performance.
 
 ## 2. Prerequisites
 - **Node.js 18.17+**: Required for the latest Next.js features.
@@ -30,14 +30,21 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint --app --src-d
 - **`--src-dir`**: Encapsulates application code, separating it from configuration files.
 
 ## 4. Establishing the Design System (The "Wow" Factor)
-A world-class application requires more than functional code; it requires **aesthetic precision**. In `src/app/globals.css`, we define our Design Tokens.
+A world-class application requires more than functional code; it requires **aesthetic precision**. In Tailwind CSS v4.0, we establish design tokens and custom utilities using a **CSS-First Configuration** directly in `src/app/globals.css` rather than a JavaScript configuration file.
 
-### Step 4.1: Mesh Gradients and Glassmorphism
-We implement a modern "Glassmorphic" aesthetic using Backdrop Filtering and Gradient Mesh backgrounds. This creates depth and visual interest without compromising performance.
+### Step 4.1: Tailwind CSS v4.0 Imports & Theme Tokens
+We import Tailwind directly and customize our design system using the `@theme` and `@utility` directives. This compiles instantly and is fully integrated with Turbopack:
 
 ```css
-/* src/app/globals.css snippet */
-.glass-card {
+/* src/app/globals.css */
+@import "tailwindcss";
+
+@theme {
+  --color-brand-indigo: oklch(0.5 0.25 270);
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@utility glass-card {
   background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);

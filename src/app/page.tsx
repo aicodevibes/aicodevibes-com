@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import Link from "next/link";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Navbar } from "@/components/layout/Navbar";
@@ -7,13 +6,6 @@ import { ModuleCard } from "@/components/lessons/ModuleCard";
 import { GoalItem } from "@/components/lessons/GoalItem";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Button } from "@/components/ui/Button";
-import { initDb } from "@/lib/db";
-
-async function DbInitializer() {
-  await initDb();
-  return null;
-}
-
 /**
  * The main landing page of the application.
  * Displays the course hero, module grid, and newsletter subscription form.
@@ -23,9 +15,6 @@ async function DbInitializer() {
 export default async function Home() {
   return (
     <div className="min-h-screen relative overflow-hidden bg-mesh font-sans selection:bg-indigo-500/30">
-      <Suspense fallback={null}>
-        <DbInitializer />
-      </Suspense>
       {/* Decorative Orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[120px] rounded-full animate-float opacity-50" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 blur-[120px] rounded-full animate-float opacity-50" style={{ animationDelay: '2s' }} />

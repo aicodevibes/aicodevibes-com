@@ -20,8 +20,8 @@ Next.js reserves specific filenames that fulfill architectural roles:
 4.  **`error.tsx`**: The recovery system (The seatbelt).
 5.  **`not-found.tsx`**: The navigation safety (The 404).
 
-## 4. `loading.tsx`: Beyond the Spinner
-Instead of a simple "Loading..." text, we aim for **Skeleton UIs**. By providing a `loading.tsx` file, Next.js automatically wraps your `page.tsx` in a **React Suspense Boundary**. The browser receives the loading UI instantly while the server works on the data.
+## 4. `loading.tsx` and Partial Prerendering (PPR)
+Instead of a simple "Loading..." text, we aim for **Skeleton UIs**. By providing a `loading.tsx` file, Next.js automatically wraps your `page.tsx` in a **React Suspense Boundary**. In Next.js 16, this forms the foundation of **Partial Prerendering (PPR)**. Under PPR, the layout shell and loading skeletons are statically compiled and served to the browser instantly, while the server streams dynamic components in the background as they resolve.
 
 ## 5. `error.tsx`: Graceful System Recovery
 An `error.tsx` is a **Client Component** that must accept two specific props:
@@ -75,7 +75,7 @@ Navigate to `src/app/ui-patterns-lesson/page.tsx` to experience these patterns i
 > **Understanding `reset()`**: The `reset()` function only tells Next.js to re-render the current segment in place. If the error is being caused by an external factor—like a **URL parameter** or **corrupt database state**—simply re-rendering will just trigger the same error again. For recovery, you must "Force System Recovery" by resetting the state (e.g., clearing the URL params).
 
 > [!IMPORTANT]
-> **Professor's Note on Next.js 15+**: In the latest version of Next.js, `params` and `searchParams` are now **Promises**. You must `await` them in your Page component before accessing their properties. This was a critical fix we implemented in our lab to ensure the "Fail" parameter was correctly detected!
+> **Professor's Note on Next.js 16**: In Next.js 16, `params` and `searchParams` are now **Promises**. You must `await` them in your Page component before accessing their properties. This was a critical fix we implemented in our lab to ensure the "Fail" parameter was correctly detected!
 
 ---
 

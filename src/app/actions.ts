@@ -1,11 +1,20 @@
 'use server';
 
-import { sql } from '@/lib/db';
+import { sql, initDb } from '@/lib/db';
 import { z } from 'zod';
 
 const EmailSchema = z.object({
   email: z.string().email('Invalid email address'),
 });
+
+let dbInitialized = false;
+
+async function ensureDbInitialized() {
+  if (!dbInitialized) {
+    await initDb();
+    dbInitialized = true;
+  }
+}
 
 /**
  * The standard response object returned by Server Actions.
@@ -38,6 +47,7 @@ export type ActionState = {
  * @returns A promise resolving to an `ActionState` object with the result of the operation.
  */
 export async function subscribeEmail(prevState: ActionState, formData: FormData) {
+  await ensureDbInitialized();
   const email = formData.get('email');
 
   // Validate the email format

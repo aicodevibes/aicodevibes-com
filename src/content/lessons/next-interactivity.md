@@ -10,7 +10,7 @@
 In this session, we explore the **Boundary between Server and Client**. We will learn why and how to use the `'use client'` directive to enable React's powerful interactivity features like **Hooks** (useState, useEffect) and **Event Handlers**.
 
 ## 2. Concept: The "Server First" Default
-In Next.js 13+, every component is a **Server Component** by default. This is excellent for performance and SEO, but it has a limitation: **No interactivity**. Server Components are rendered once on the server and sent as static HTML. They cannot "react" to user clicks or manage state.
+In modern Next.js (version 16), every component is a **Server Component** by default. This is excellent for performance and SEO, but it has a limitation: **No interactivity**. Server Components are rendered once on the server and sent as static HTML. They cannot "react" to user clicks or manage state in the browser.
 
 ## 3. The Escape Hatch: `'use client'`
 To add interactivity, we must explicitly declare a component as a **Client Component**. We do this by adding the `'use client'` directive at the very top of the file.
@@ -28,6 +28,7 @@ export default function Counter() {
 
 ### When to use Client Components:
 - Using React **Hooks** (`useState`, `useEffect`, `useContext`).
+- Interfacing with Server Actions using modern React 19 hooks (`useActionState`, `useOptimistic`).
 - Using **Event Listeners** (`onClick`, `onChange`, `onSubmit`).
 - Using **Browser-only APIs** (like `window`, `localStorage`, or `document`).
 
@@ -73,7 +74,7 @@ Navigate to `src/app/interactivity-lesson/page.tsx` to experiment with real-time
    **CAUTION**: You should *never* put sensitive secrets in Client Components. They are visible in the browser's source code. Use Server Components for secret data fetching.
 
 8. **Is `useState` the only way to manage state?**  
-   No. You can also use `useReducer`, or external libraries like Redux or Zustand. In modern Next.js, many states (like the current URL) are managed by the router.
+   No. You can use `useReducer`, state managers like Redux or Zustand, or React 19's form-actions state manager `useActionState`. In modern Next.js, page routing state is managed by the router, and static data promises can be unwrapped on the client using the React 19 `use` hook.
 
 9. **Can I use browser-only libraries like `Chart.js`?**  
    Yes, but only in components marked with `'use client'`. You might also need to use dynamic imports to ensure they don't try to run on the server.

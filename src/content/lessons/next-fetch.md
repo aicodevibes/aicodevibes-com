@@ -15,11 +15,12 @@ In traditional SPAs, we often see "Waterfalls": Component A fetches data, then C
 2.  **Streaming**: Send the static parts of the page (shells) instantly, then stream the components as they finish fetching.
 
 ## 3. The Protocol: Implementing `fetch()` on the Server
-Modern Next.js uses an extended `fetch()` that handles **Caching**, **Revalidation**, and **Deduplication** automatically.
+In Next.js 16, server-side data fetching is uncached by default (`cache: 'no-store'`). Caching is entirely opt-in, allowing you to explicitly declare caching strategies at the fetch or component level. Next.js automatically handles request deduplication (preventing duplicate requests for the same URL in a single render pass).
 
 ```tsx
 async function TaskList() {
-  const data = await fetch('https://api.example.com/tasks');
+  // Explicitly opting-in to static caching for this fetch call
+  const data = await fetch('https://api.example.com/tasks', { cache: 'force-cache' });
   const tasks = await data.json();
   
   return (
@@ -66,8 +67,8 @@ By using this architecture, the **Time to First Byte (TTFB)** is minimized. The 
 1. **Wait, can I use `useState` and `useEffect` in these Server Components?**  
    No. Server Components are stateless and don't have a "lifecycle" in the traditional client-side sense. They execute once on the server and render HTML.
 
-2. **How does `fetch()` know how to cache the data?**  
-   Next.js intercepts the native `fetch` API. By default, it caches results in production, but you can configure it with `{ next: { revalidate: 3600 } }` to refresh data every hour.
+1. **How does `fetch()` know how to cache the data?**  
+   In Next.js 16, `fetch` requests are dynamic and uncached by default. To cache data, you must explicitly opt in by passing `{ cache: 'force-cache' }` in the fetch options, or use Next.js 16's stable `'use cache'` directive at the function/component level. Once opted in, you can configure revalidation via `{ next: { revalidate: 3600 } }`.
 
 3. **What happens if the fetch fails?**  
    You can use **Error Boundaries** (by creating an `error.tsx` file in the same folder) to catch these errors and show a custom UI to the user without crashing the app.

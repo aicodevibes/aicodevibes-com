@@ -38,10 +38,14 @@ Navigate to [**/lessons**](/lessons) to explore the hub we built.
 Why do we use semantic slugs like `/lessons/next-fetch` instead of `/lesson?id=2`? **SEO**. Search engine crawlers (Google, Bing) prioritize "Clean URLs."
 
 ### The `generateMetadata` Function
-In Next.js, we don't just set a static title. We use a specialized server-side function to read the current `params` and dynamically generate the page title and meta description.
+In Next.js, we don't just set a static title. We use a specialized server-side function to read the current `params` and dynamically generate the page title and meta description. We use TypeScript interfaces to strictly type the incoming parameters promise.
 
 ```tsx
-export async function generateMetadata({ params }) {
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   return { title: `Exploring ${slug}` };
 }
@@ -56,7 +60,7 @@ export async function generateMetadata({ params }) {
 ## 7. Frequently Asked Questions (FAQ)
 
 1. **Wait, can I use `fs` in a Client Component?**  
-   Absolutely not! `fs` is a Node.js-only module. This logic must reside in a **Server Component** (the default in Next.js 13+).
+   Absolutely not! `fs` is a Node.js-only module. This logic must reside in a **Server Component** (the default in modern Next.js).
 
 2. **What happens if I enter a slug that doesn't exist?**  
    The `notFound()` function from `next/navigation` will trigger the standard 404 boundary, keeping the application's integrity intact.
@@ -65,13 +69,13 @@ export async function generateMetadata({ params }) {
    In this lesson, we integrated the `react-markdown` library to parse our content and implemented a custom `.prose-premium` design system in `globals.css` to translate markdown elements into stylized, high-end React components.
 
 4. **Is this slow to read from the disk every time?**  
-   In production, Next.js will often cache these routes or use **Static Site Generation (SSG)** to pre-read these files at build time, making them lightning-fast globally.
+   Next.js 16 compiles pages dynamically by default. To prevent reading from the filesystem on every request, you can use the stable `'use cache'` directive at the function or file level to store the lesson data in memory across requests, making retrievals extremely fast.
 
 5. **Can I have nested dynamic routes?**  
    Yes. You can have `[category]/[id]/page.tsx` for complex structures like e-commerce or documentation hubs.
 
 6. **How do I get the `slug` into my component?**  
-   It is passed to the Page component as a **Promise** in the `params` prop. You must `await` it in Next.js 15+.
+   It is passed to the Page component as a **Promise** in the `params` prop. You must `await` it in Next.js 16 before accessing its keys.
 
 7. **Can I use this for a blog?**  
    This is precisely how modern static blogs (like those built with MDX) work. Each blog post is a file, and a single template renders them all.
